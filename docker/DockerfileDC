@@ -11,7 +11,7 @@ RUN install-php-extensions pdo_mysql zip intl soap gd opcache bcmath sockets
 RUN mkdir /var/log/supervisor
 RUN apk add nginx supervisor
 RUN rm -rf /etc/nginx/http.d/*
-COPY /docker/default_2 /etc/nginx/http.d/default.conf
+COPY /docker/default /etc/nginx/http.d/default.conf
 COPY /docker/fastcgi-php.conf /etc/nginx/fastcgi-php.conf
 WORKDIR /var/www/html
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
