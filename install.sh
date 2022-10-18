@@ -2,6 +2,7 @@ app_name="your service name"
 cd /temp
 laravel new $app_name
 mv /temp/$app_name/ /var/www/html
+rm /temp/$app_name/
 cd /var/www/html
 mkdir /var/www/html/app/Traits
 mv ApiResponser.php /var/www/html/app/Traits/ApiResponser.php
