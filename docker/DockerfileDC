@@ -15,7 +15,6 @@ COPY /docker/default /etc/nginx/http.d/default.conf
 COPY /docker/fastcgi-php.conf /etc/nginx/fastcgi-php.conf
 WORKDIR /var/www/html
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
-RUN composer global require laravel/installer
 
 #RUN php artisan test
 EXPOSE 80
