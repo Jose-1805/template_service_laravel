@@ -1,5 +1,4 @@
-echo '### app_name="seller_service"'
-app_name="seller_service"
+app_name="service_name"
 
 echo '### find /var/www/html/ -type f -exec chmod 0777 {} \;'
 find /var/www/html/ -type f -exec chmod 0777 {} \;

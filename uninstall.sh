@@ -1,5 +1,4 @@
-echo '#### app_name="seller_service"'
-app_name="seller_service"
+app_name="service_name"
 
 echo '#### mkdir /tmp/$app_name'
 mkdir /tmp/$app_name
