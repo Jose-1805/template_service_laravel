@@ -1,4 +1,4 @@
-container=seller-service-dc
+container=container-name
 alias artisan="docker exec -it $container php artisan"
 alias tinker="docker exec -it $container php artisan tinker"
 alias reload_octane="docker exec -it $container php artisan octane:reload"
