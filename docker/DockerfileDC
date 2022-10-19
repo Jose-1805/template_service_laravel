@@ -6,8 +6,9 @@ COPY /docker/supervisord.conf /etc/supervisord.conf
 RUN apk update
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
 RUN chmod +x /usr/local/bin/install-php-extensions
+RUN install-php-extensions xdebug
 RUN docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd
-RUN install-php-extensions pdo_mysql zip intl soap gd opcache bcmath sockets xdebug
+RUN install-php-extensions pdo_mysql zip intl soap gd opcache bcmath sockets
 RUN mkdir /var/log/supervisor
 RUN apk add nginx supervisor
 RUN rm -rf /etc/nginx/http.d/*
