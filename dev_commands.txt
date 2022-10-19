@@ -1,5 +1,7 @@
 container=container-name
 alias artisan="docker exec -it $container php artisan"
+alias install_app="docker exec -it $container sh ./install.sh"
+alias uninstall_app="docker exec -it $container sh ./uninstall.sh"
 alias tinker="docker exec -it $container php artisan tinker"
 alias reload_octane="docker exec -it $container php artisan octane:reload"
 alias octane_status="docker exec -it $container php artisan octane:status"
