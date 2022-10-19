@@ -9,6 +9,7 @@ rm -r /var/www/html/.git
 mkdir /var/www/html/app/Traits
 mv ApiResponser.php /var/www/html/app/Traits/ApiResponser.php
 mv /var/www/html/es/ /var/www/html/lang/
+mv /var/www/html/app.php /var/www/html/config/app.php
 composer require laravel/octane
 printf '0\nyes' | php artisan octane:install
 chmod +x /var/www/html/rr
