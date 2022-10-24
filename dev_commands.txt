@@ -1,5 +1,6 @@
 container=container-name
 alias artisan="docker exec -it $container php artisan"
+alias make_resource="docker exec -it $container sh ./docker/commands/make_resource.sh"
 alias install_app="docker exec -it $container sh ./install.sh"
 alias uninstall_app="docker exec -it $container sh ./uninstall.sh"
 alias tinker="docker exec -it $container php artisan tinker"

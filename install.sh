@@ -27,6 +27,9 @@ mkdir /var/www/html/app/Traits
 echo '### mv ApiResponser.php /var/www/html/app/Traits/ApiResponser.php'
 mv ApiResponser.php /var/www/html/app/Traits/ApiResponser.php
 
+echo '### mv Handler.php /var/www/html/app/Exceptions/Handler.php
+mv Handler.php /var/www/html/app/Exceptions/Handler.php
+
 echo '### mv /var/www/html/es/ /var/www/html/lang/'
 mv /var/www/html/es/ /var/www/html/lang/
 

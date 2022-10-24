@@ -12,6 +12,9 @@ mv /var/www/html/lang/es /tmp/$app_name/
 echo '#### mv /var/www/html/app/Traits/ApiResponser.php /tmp/$app_name/ApiResponser.php'
 mv /var/www/html/app/Traits/ApiResponser.php /tmp/$app_name/ApiResponser.php
 
+echo '#### mv /var/www/html/app/Exceptions/Handler.php /tmp/$app_name/Handler.php'
+mv /var/www/html/app/Exceptions/Handler.php /tmp/$app_name/Handler.php
+
 echo '#### mv /var/www/html/config/app.php /tmp/$app_name/app.php'
 mv /var/www/html/config/app.php /tmp/$app_name/app.php
 
