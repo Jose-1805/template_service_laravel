@@ -1,1 +1,1 @@
-php artisan make:model $1 -m -c --api
+php artisan make:model $1 -m -c -R --api
