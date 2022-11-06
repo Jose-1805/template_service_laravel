@@ -18,3 +18,5 @@ echo "Asignando permisos al directorio ./storage"
 find ./storage -type d -exec chmod 0777 {} \;
 echo "Asignando permisos al directorio ./tests"
 find ./tests -type d -exec chmod 0777 {} \;
+echo "Asignando permisos al directorio ./stubs"
+find ./stubs -type d -exec chmod 0777 {} \;

@@ -20,3 +20,5 @@ echo "### Asignando permisos a archivos de la carpeta ./tests"
 find ./tests -type f -exec chmod 0777 {} \;
 echo "### Asignando permisos a archivos de la carpeta raíz"
 find ./ -type f -maxdepth 1 -exec chmod 0777 {} \;
+echo "### Asignando permisos a archivos de la carpeta ./stubs"
+find ./stubs -type f -exec chmod 0777 {} \;
