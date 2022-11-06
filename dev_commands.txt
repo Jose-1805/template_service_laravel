@@ -12,6 +12,8 @@ alias dev_files_permissions="docker exec -it $container find ./ -type f -exec ch
 alias dev_dir_permissions="docker exec -it $container find ./ -type d -exec chmod 0777 {} \;"
 alias prod_files_permissions="docker exec -it $container find ./ -type f -exec chmod 0644 {} \;"
 alias prod_dir_permissions="docker exec -it $container find ./ -type d -exec chmod 0755 {} \;"
+
+### Los siguientes commandos solo funcionan en el API_GATEWAY
 alias create_role="docker exec -it $container php artisan permission:create-role"
 alias create_permission="docker exec -it $container php artisan permission:create-permission"
 alias permissions="docker exec -it $container php artisan permission:show"
