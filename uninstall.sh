@@ -1,41 +1,47 @@
 app_name="service_name"
+default_path="/var/www/html"
+#default_path="/home/jose/Descargas/new/template"
+tmp_path="/tmp/$app_name"
 
-echo '#### mkdir /tmp/$app_name'
-mkdir /tmp/$app_name
+echo '#### mkdir $tmp_path'
+mkdir $tmp_path
 
-echo '#### mv /var/www/html/docker /tmp/$app_name/'
-mv /var/www/html/docker /tmp/$app_name/
+echo '#### mv $default_path/docker $tmp_path/'
+mv $default_path/docker $tmp_path/
 
-echo '#### mv /var/www/html/lang/es /tmp/$app_name/'
-mv /var/www/html/lang/es /tmp/$app_name/
+echo '#### mv $default_path/lang/es $tmp_path/'
+mv $default_path/lang/es $tmp_path/
 
-echo '#### mv /var/www/html/app/Traits/ApiResponser.php /tmp/$app_name/ApiResponser.php'
-mv /var/www/html/app/Traits/ApiResponser.php /tmp/$app_name/ApiResponser.php
+echo '#### mv $default_path/app/Traits/ApiResponser.php $tmp_path/ApiResponser.php'
+mv $default_path/app/Traits/ApiResponser.php $tmp_path/ApiResponser.php
 
-echo '#### mv /var/www/html/app/Exceptions/Handler.php /tmp/$app_name/Handler.php'
-mv /var/www/html/app/Exceptions/Handler.php /tmp/$app_name/Handler.php
+echo '#### mv $default_path/app/Exceptions/Handler.php $tmp_path/Handler.php'
+mv $default_path/app/Exceptions/Handler.php $tmp_path/Handler.php
 
-echo '#### mv /var/www/html/config/app.php /tmp/$app_name/app.php'
-mv /var/www/html/config/app.php /tmp/$app_name/app.php
+echo '#### mv $default_path/config/app.php $tmp_path/app.php'
+mv $default_path/config/app.php $tmp_path/app.php
 
-echo '#### mv /var/www/html/dev_commands.txt /tmp/$app_name/dev_commands.txt'
-mv /var/www/html/dev_commands.txt /tmp/$app_name/dev_commands.txt
+echo '#### mv $default_path/dev_commands.txt $tmp_path/dev_commands.txt'
+mv $default_path/dev_commands.txt $tmp_path/dev_commands.txt
 
-echo '#### mv /var/www/html/install.sh /tmp/$app_name/install.sh'
-mv /var/www/html/install.sh /tmp/$app_name/install.sh
+echo '#### mv $default_path/instrucciones.txt $tmp_path/instrucciones.txt'
+mv $default_path/instrucciones.txt $tmp_path/instrucciones.txt
 
-echo '#### cp /var/www/html/uninstall.sh /tmp/$app_name/uninstall.sh'
-cp /var/www/html/uninstall.sh /tmp/$app_name/uninstall.sh
+echo '#### mv $default_path/install.sh $tmp_path/install.sh'
+mv $default_path/install.sh $tmp_path/install.sh
+
+echo '#### cp $default_path/uninstall.sh $tmp_path/uninstall.sh'
+cp $default_path/uninstall.sh $tmp_path/uninstall.sh
 
 echo '#### chmod +x /tmp/seller_service/uninstall.sh'
 chmod +x /tmp/seller_service/uninstall.sh
 
-echo '#### rm -r /var/www/html/*'
-rm -r /var/www/html/*
+echo '#### rm -r $default_path/*'
+rm -r $default_path/*
 
-echo '#### rm -r /var/www/html/.*'
-rm -r /var/www/html/.*
+echo '#### rm -r $default_path/.*'
+rm -r $default_path/.*
 
-echo '#### mv /tmp/$app_name/* /var/www/html/'
-mv /tmp/$app_name/* /var/www/html/
+echo '#### mv $tmp_path/* $default_path/'
+mv $tmp_path/* $default_path/
 

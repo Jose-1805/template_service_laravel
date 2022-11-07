@@ -1,40 +1,43 @@
 app_name="service_name"
+default_path="/var/www/html"
+#default_path="/home/jose/Descargas/new/template"
+tmp_path="/tmp/$app_name"
 
-echo '### find /var/www/html/ -type f -exec chmod 0777 {} \;'
-find /var/www/html/ -type f -exec chmod 0777 {} \;
+echo "shopt -s dotglob"
+shopt -s dotglob
 
-echo '### find /var/www/html/ -type d -exec chmod 0777 {} \;'
-find /var/www/html/ -type d -exec chmod 0777 {} \;
+echo '### find $default_path/ -type f -exec chmod 0777 {} \;'
+find $default_path/ -type f -exec chmod 0777 {} \;
 
-echo '### composer create-project laravel/laravel /tmp/$app_name'
-composer create-project laravel/laravel /tmp/$app_name
+echo '### find $default_path/ -type d -exec chmod 0777 {} \;'
+find $default_path/ -type d -exec chmod 0777 {} \;
 
-echo '### mv /tmp/$app_name/.* /var/www/html/'
-mv /tmp/$app_name/.* /var/www/html/
+echo '### composer create-project laravel/laravel tmp_path'
+composer create-project laravel/laravel tmp_path
 
-echo '### mv /tmp/$app_name/* /var/www/html/'
-mv /tmp/$app_name/* /var/www/html/
+echo '### mv tmp_path/* $default_path/'
+mv tmp_path/* $default_path/
 
-echo '### rm -r /tmp/$app_name/'
-rm -r /tmp/$app_name/
+echo '### rm -r tmp_path/'
+rm -r tmp_path/
 
-echo '### rm -r /var/www/html/.git'
-rm -r /var/www/html/.git
+echo '### rm -r $default_path/.git'
+rm -r $default_path/.git
 
-echo '### mkdir /var/www/html/app/Traits'
-mkdir /var/www/html/app/Traits
+echo '### mkdir $default_path/app/Traits'
+mkdir $default_path/app/Traits
 
-echo '### mv ApiResponser.php /var/www/html/app/Traits/ApiResponser.php'
-mv ApiResponser.php /var/www/html/app/Traits/ApiResponser.php
+echo '### mv ApiResponser.php $default_path/app/Traits/ApiResponser.php'
+mv ApiResponser.php $default_path/app/Traits/ApiResponser.php
 
-echo '### mv Handler.php /var/www/html/app/Exceptions/Handler.php'
-mv Handler.php /var/www/html/app/Exceptions/Handler.php
+echo '### mv Handler.php $default_path/app/Exceptions/Handler.php'
+mv Handler.php $default_path/app/Exceptions/Handler.php
 
-echo '### mv /var/www/html/es/ /var/www/html/lang/'
-mv /var/www/html/es/ /var/www/html/lang/
+echo '### mv $default_path/es/ $default_path/lang/'
+mv $default_path/es/ $default_path/lang/
 
-echo '### mv /var/www/html/app.php /var/www/html/config/app.php'
-mv /var/www/html/app.php /var/www/html/config/app.php
+echo '### mv $default_path/app.php $default_path/config/app.php'
+mv $default_path/app.php $default_path/config/app.php
 
 echo '### composer require laravel/octane'
 composer require laravel/octane
@@ -42,11 +45,14 @@ composer require laravel/octane
 echo '### printf '0\nyes' | php artisan octane:install'
 printf '0\nyes' | php artisan octane:install
 
-echo '### chmod +x /var/www/html/rr'
-chmod +x /var/www/html/rr
+echo '### chmod +x $default_path/rr'
+chmod +x $default_path/rr
 
-echo '### find /var/www/html/ -type f -exec chmod 0777 {} \;'
-find /var/www/html/ -type f -exec chmod 0777 {} \;
+echo '### rm -r $default_path/database/migrations'
+rm -r $default_path/database/migrations
 
-echo '### find /var/www/html/ -type d -exec chmod 0777 {} \;'
-find /var/www/html/ -type d -exec chmod 0777 {} \;
+echo '### find $default_path/ -type f -exec chmod 0777 {} \;'
+find $default_path/ -type f -exec chmod 0777 {} \;
+
+echo '### find $default_path/ -type d -exec chmod 0777 {} \;'
+find $default_path/ -type d -exec chmod 0777 {} \;
