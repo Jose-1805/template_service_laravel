@@ -1,7 +1,7 @@
 app_name="service_name"
 default_path="/var/www/html"
 #default_path="/home/jose/Descargas/new/template"
-tmp__path="/tmp/$app_name"
+tmp_path="/tmp/$app_name"
 
 echo "shopt -s dotglob"
 shopt -s dotglob
