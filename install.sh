@@ -1,7 +1,7 @@
 app_name="service_name"
 default_path="/var/www/html"
 #default_path="/home/jose/Descargas/new/template"
-tmp_path="/tmp/$app_name"
+tmp__path="/tmp/$app_name"
 
 echo "shopt -s dotglob"
 shopt -s dotglob
@@ -12,17 +12,17 @@ find $default_path/ -type f -exec chmod 0777 {} \;
 echo '### find $default_path/ -type d -exec chmod 0777 {} \;'
 find $default_path/ -type d -exec chmod 0777 {} \;
 
-echo '### composer create-project laravel/laravel tmp_path'
-composer create-project laravel/laravel tmp_path
+echo '### composer create-project laravel/laravel $tmp_path'
+composer create-project laravel/laravel $tmp_path
 
-echo '### mv tmp_path/.* $default_path/'
-mv tmp_path/.* $default_path/
+echo '### mv $tmp_path/.* $default_path/'
+mv $tmp_path/.* $default_path/
 
-echo '### mv tmp_path/* $default_path/'
-mv tmp_path/* $default_path/
+echo '### mv $tmp_path/* $default_path/'
+mv $tmp_path/* $default_path/
 
-echo '### rm -r tmp_path/'
-rm -r tmp_path/
+echo '### rm -r $tmp_path/'
+rm -r $tmp_path/
 
 echo '### rm -r $default_path/.git'
 rm -r $default_path/.git
