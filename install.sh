@@ -24,9 +24,6 @@ mv $tmp_path/* $default_path/
 echo '### rm -r $tmp_path/'
 rm -r $tmp_path/
 
-echo '### rm -r $default_path/.git'
-rm -r $default_path/.git
-
 echo '### mkdir $default_path/app/Traits'
 mkdir $default_path/app/Traits
 
