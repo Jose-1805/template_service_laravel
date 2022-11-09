@@ -54,4 +54,4 @@ Para instalar modo local:
 
 Para crear un recurso
     1. Para crear un recurso con modelo, requests, controlador y rutas ejecute el siguiente comando
-        php artisan make:resource TestOne
+        php artisan make:resource ResourceName
