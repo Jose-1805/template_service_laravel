@@ -24,6 +24,9 @@ mv $tmp_path/* $default_path/
 echo '### rm -r $tmp_path/'
 rm -r $tmp_path/
 
+echo '### mv $default_path/Helpers/ $default_path/app/'
+mv $default_path/Helpers/ $default_path/app/
+
 echo '### mkdir $default_path/app/Traits'
 mkdir $default_path/app/Traits
 
@@ -32,6 +35,9 @@ mv ApiResponser.php $default_path/app/Traits/ApiResponser.php
 
 echo '### mv Handler.php $default_path/app/Exceptions/Handler.php'
 mv Handler.php $default_path/app/Exceptions/Handler.php
+
+echo '### mv MakeResourceCommand.php $default_path/app/Console/Commands/MakeResourceCommand.php'
+mv MakeResourceCommand.php $default_path/app/Console/Commands/MakeResourceCommand.php
 
 echo '### mv $default_path/es/ $default_path/lang/'
 mv $default_path/es/ $default_path/lang/

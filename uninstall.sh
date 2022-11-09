@@ -12,11 +12,20 @@ mv $default_path/docker $tmp_path/
 echo '#### mv $default_path/lang/es $tmp_path/'
 mv $default_path/lang/es $tmp_path/
 
+echo '#### mv $default_path/app/Helpers $tmp_path/'
+mv $default_path/app/Helpers $tmp_path/
+
+echo '#### mv $default_path/stubs $tmp_path/'
+mv $default_path/stubs $tmp_path/
+
 echo '#### mv $default_path/app/Traits/ApiResponser.php $tmp_path/ApiResponser.php'
 mv $default_path/app/Traits/ApiResponser.php $tmp_path/ApiResponser.php
 
 echo '#### mv $default_path/app/Exceptions/Handler.php $tmp_path/Handler.php'
 mv $default_path/app/Exceptions/Handler.php $tmp_path/Handler.php
+
+echo '#### mv $default_path/app/Console/Commands/MakeResourceCommand.php $tmp_path/MakeResourceCommand.php'
+mv $default_path/app/Console/Commands/MakeResourceCommand.php $tmp_path/MakeResourceCommand.php
 
 echo '#### mv $default_path/config/app.php $tmp_path/app.php'
 mv $default_path/config/app.php $tmp_path/app.php
