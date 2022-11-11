@@ -30,6 +30,12 @@ mv $default_path/Helpers/ $default_path/app/
 echo '### mkdir $default_path/app/Traits'
 mkdir $default_path/app/Traits
 
+echo '### mkdir $default_path/app/Services'
+mkdir $default_path/app/Services
+
+echo '### mv ApiGateway.php $default_path/app/Services/ApiGateway.php'
+mv ApiGateway.php $default_path/app/Services/ApiGateway.php
+
 echo '### mv ApiResponser.php $default_path/app/Traits/ApiResponser.php'
 mv ApiResponser.php $default_path/app/Traits/ApiResponser.php
 

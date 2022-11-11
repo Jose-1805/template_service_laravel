@@ -18,6 +18,9 @@ mv $default_path/app/Helpers $tmp_path/
 echo '#### mv $default_path/stubs $tmp_path/'
 mv $default_path/stubs $tmp_path/
 
+echo '#### mv $default_path/app/Services/ApiGateway.php $tmp_path/ApiGateway.php'
+mv $default_path/app/Services/ApiGateway.php $tmp_path/ApiGateway.php
+
 echo '#### mv $default_path/app/Traits/ApiResponser.php $tmp_path/ApiResponser.php'
 mv $default_path/app/Traits/ApiResponser.php $tmp_path/ApiResponser.php
 
