@@ -33,14 +33,23 @@ mkdir $default_path/app/Traits
 echo '### mkdir $default_path/app/Services'
 mkdir $default_path/app/Services
 
+echo '### mv Kernel.php $default_path/app/Http/Kernel.php'
+mv Kernel.php $default_path/app/Http/Kernel.php
+
 echo '### mv ApiGateway.php $default_path/app/Services/ApiGateway.php'
 mv ApiGateway.php $default_path/app/Services/ApiGateway.php
 
 echo '### mv ApiResponser.php $default_path/app/Traits/ApiResponser.php'
 mv ApiResponser.php $default_path/app/Traits/ApiResponser.php
 
+echo '### mv AuthenticateAccessMiddleware.php $default_path/app/Http/Middleware/AuthenticateAccessMiddleware.php'
+mv AuthenticateAccessMiddleware.php $default_path/app/Http/Middleware/AuthenticateAccessMiddleware.php
+
 echo '### mv Handler.php $default_path/app/Exceptions/Handler.php'
 mv Handler.php $default_path/app/Exceptions/Handler.php
+
+echo '### mv services.php $default_path/config/services.php'
+mv services.php $default_path/config/services.php
 
 echo '### mv MakeResourceCommand.php $default_path/app/Console/Commands/MakeResourceCommand.php'
 mv MakeResourceCommand.php $default_path/app/Console/Commands/MakeResourceCommand.php

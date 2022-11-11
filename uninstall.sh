@@ -18,14 +18,23 @@ mv $default_path/app/Helpers $tmp_path/
 echo '#### mv $default_path/stubs $tmp_path/'
 mv $default_path/stubs $tmp_path/
 
+echo '#### mv $default_path/app/Http/Kernel.php $tmp_path/Kernel.php'
+mv $default_path/app/Http/Kernel.php $tmp_path/Kernel.php
+
 echo '#### mv $default_path/app/Services/ApiGateway.php $tmp_path/ApiGateway.php'
 mv $default_path/app/Services/ApiGateway.php $tmp_path/ApiGateway.php
 
 echo '#### mv $default_path/app/Traits/ApiResponser.php $tmp_path/ApiResponser.php'
 mv $default_path/app/Traits/ApiResponser.php $tmp_path/ApiResponser.php
 
+echo '#### mv $default_path/app/Http/Middleware/AuthenticateAccessMiddleware.php $tmp_path/AuthenticateAccessMiddleware.php'
+mv $default_path/app/Http/Middleware/AuthenticateAccessMiddleware.php $tmp_path/AuthenticateAccessMiddleware.php
+
 echo '#### mv $default_path/app/Exceptions/Handler.php $tmp_path/Handler.php'
 mv $default_path/app/Exceptions/Handler.php $tmp_path/Handler.php
+
+echo '#### mv $default_path/config/services.php $tmp_path/services.php'
+mv $default_path/config/services.php $tmp_path/services.php
 
 echo '#### mv $default_path/app/Console/Commands/MakeResourceCommand.php $tmp_path/MakeResourceCommand.php'
 mv $default_path/app/Console/Commands/MakeResourceCommand.php $tmp_path/MakeResourceCommand.php

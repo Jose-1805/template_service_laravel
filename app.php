@@ -143,10 +143,6 @@ return [
         // 'store'  => 'redis',
     ],
 
-    'api_gateway' => [
-        'base_uri' => env('API_GATEWAY_BASE_URI', 'http://md-api-gateway')
-    ],
-
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers

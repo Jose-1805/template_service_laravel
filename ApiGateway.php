@@ -12,16 +12,17 @@ class ApiGateway
      * @param $method
      * @param $requestUrl
      * @param array $formParams
-     * @param array $headers
      * @return array
      */
-    public static function performRequest($method, $requestUrl, $formParams = [], $headers = []): array
+    public static function performRequest($method, $requestUrl, $formParams = []): array
     {
-        $base_uri = config("app.api_gateway.base_uri");
+        $base_uri = config("services.api_gateway.base_uri");
 
         $func = strtolower($method);
 
-        $request = Http::baseUrl($base_uri);
+        $request = Http::baseUrl($base_uri)->withHeaders([
+            'Authorization' => config("services.api_gateway.access_secret")
+        ]);
 
         $has_file = false;
 
@@ -44,10 +45,6 @@ class ApiGateway
         }
 
         $response = $request->$func($requestUrl, $formParams);
-
-        /*if (isset($this->secret)) {
-            $headers['Authorization'] = $this->secret;
-        }*/
 
         $data = json_decode($response->body(), true);
 
