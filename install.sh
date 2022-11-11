@@ -33,6 +33,9 @@ mkdir $default_path/app/Traits
 echo '### mkdir $default_path/app/Services'
 mkdir $default_path/app/Services
 
+echo '### mkdir $default_path/app/Console/Commands'
+mkdir $default_path/app/Console/Commands
+
 echo '### mv Kernel.php $default_path/app/Http/Kernel.php'
 mv Kernel.php $default_path/app/Http/Kernel.php
 
