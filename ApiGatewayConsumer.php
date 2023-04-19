@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Services;
+namespace App\Traits;
 
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Http;
 
-class ApiGateway
+trait ApiGatewayConsumer
 {
     /**
      * Solicitud http a un servicio del cluster

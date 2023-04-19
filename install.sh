@@ -1,88 +1,81 @@
 app_name="service_name"
+
 default_path="/var/www/html"
-#default_path="/home/jose/Descargas/new/template"
 tmp_path="/tmp/$app_name"
+#default_path="/home/jose/Descargas/new/template_service"
+#tmp_path="/home/jose/Descargas/new/tmp_$app_name"
 
 echo "shopt -s dotglob"
 shopt -s dotglob
 
-echo '### find $default_path/ -type f -exec chmod 0777 {} \;'
-find $default_path/ -type f -exec chmod 0777 {} \;
-
-echo '### find $default_path/ -type d -exec chmod 0777 {} \;'
-find $default_path/ -type d -exec chmod 0777 {} \;
-
-echo '### composer create-project laravel/laravel $tmp_path'
+echo '# Creando proyecto en ruta temporal ...'
 composer create-project laravel/laravel $tmp_path
 
-echo '### mv $tmp_path/.* $default_path/'
+echo '# Moviendo archivos ocultos a ruta final $default_path ...'
 mv $tmp_path/.* $default_path/
 
-echo '### mv $tmp_path/* $default_path/'
+echo '# Moviendo archivos y directorios a ruta final $default_path ...'
 mv $tmp_path/* $default_path/
 
-echo '### rm -r $tmp_path/'
+echo '# Eliminando ruta temporal ...'
 rm -r $tmp_path/
 
-echo '### mv $default_path/Helpers/ $default_path/app/'
-mv $default_path/Helpers/ $default_path/app/
+echo '# Eliminando modelo de usuario User.php ...'
+rm $default_path/app/Models/User.php
 
-echo '### mkdir $default_path/app/Rules'
+echo '# Creando directorio para almacenamiento de reglas de validación ...'
 mkdir $default_path/app/Rules
 
-echo '### mkdir $default_path/app/Traits'
-mkdir $default_path/app/Traits
-
-echo '### mkdir $default_path/app/Services'
-mkdir $default_path/app/Services
-
-echo '### mkdir $default_path/app/Console/Commands'
-mkdir $default_path/app/Console/Commands
-
-echo '### mv Kernel.php $default_path/app/Http/Kernel.php'
-mv Kernel.php $default_path/app/Http/Kernel.php
-
-echo '### mv OkApiGatewayResponse.php $default_path/app/Rules/OkApiGatewayResponse.php'
+echo '# Creando regla para validar respuesta obtenida de un método del ApiGateway ...'
 mv OkApiGatewayResponse.php $default_path/app/Rules/OkApiGatewayResponse.php
 
-echo '### mv ApiGateway.php $default_path/app/Services/ApiGateway.php'
-mv ApiGateway.php $default_path/app/Services/ApiGateway.php
+echo '# Creando directorio para almacenamiento de Traits'
+mkdir $default_path/app/Traits
 
-echo '### mv ApiResponser.php $default_path/app/Traits/ApiResponser.php'
+echo '# Creando Trait de estandarización de respuestas ...'
 mv ApiResponser.php $default_path/app/Traits/ApiResponser.php
 
-echo '### mv AuthenticateAccessMiddleware.php $default_path/app/Http/Middleware/AuthenticateAccessMiddleware.php'
-mv AuthenticateAccessMiddleware.php $default_path/app/Http/Middleware/AuthenticateAccessMiddleware.php
+echo '# Creando trait para consumir métodos del Api Gateway desde un servicio...'
+mv ApiGatewayConsumer.php $default_path/app/Traits/ApiGatewayConsumer.php
 
-echo '### mv Handler.php $default_path/app/Exceptions/Handler.php'
-mv Handler.php $default_path/app/Exceptions/Handler.php
+echo '# Creando directorio para almacenamiento de comandos ...'
+mkdir $default_path/app/Console/Commands
 
-echo '### mv services.php $default_path/config/services.php'
-mv services.php $default_path/config/services.php
-
-echo '### mv MakeResourceCommand.php $default_path/app/Console/Commands/MakeResourceCommand.php'
+echo '#  Creando comando para la generación de recursos y configuraciones de módulos del sistena'
 mv MakeResourceCommand.php $default_path/app/Console/Commands/MakeResourceCommand.php
 
-echo '### mv $default_path/es/ $default_path/lang/'
-mv $default_path/es/ $default_path/lang/
+echo '# Creando middleware de autenticación de solicitudes al servicio ...'
+mv AuthenticateAccessMiddleware.php $default_path/app/Http/Middleware/AuthenticateAccessMiddleware.php
 
-echo '### mv $default_path/app.php $default_path/config/app.php'
-mv $default_path/app.php $default_path/config/app.php
+echo '# Creando manejador de excepciones del sistema ...'
+mv Handler.php $default_path/app/Exceptions/Handler.php
 
-echo '### composer require laravel/octane'
-composer require laravel/octane
+echo '# Publicando archivos de internacionalización ...'
+php artisan lang:publish
 
-echo '### printf '0\nyes' | php artisan octane:install'
+echo '# Creando archivos de internacionalización para español ...'
+mv $default_path/es $default_path/lang/
+
+echo '# Instalando laravel octane para mejorar el rendimiento de la aplicación ...'
+composer require laravel/octane --with-all-dependencies
+# Realiza la instalación de laravel octane con las respuestas de consola necesarias
 printf '0\nyes' | php artisan octane:install
-
-echo '### chmod +x $default_path/rr'
+# Permisos de ejecución para el archivo rr
 chmod +x $default_path/rr
 
-echo '### rm -r $default_path/database/migrations'
+echo '# Eliminación de migraciones'
 rm -r $default_path/database/migrations
 
-echo '### find $default_path/ -type f -exec chmod 0777 {} \;'
-find $default_path/ -type f -exec chmod 0777 {} \;
+echo '# Creando StubFormatter.php para crear clases de objetos laravel dinámicamente ...'
+mv $default_path/Helpers $default_path/app/
 
-echo '### find $default_path/ -type d -exec chmod 0777 {} \;'
-find $default_path/ -type d -exec chmod 0777 {} \;
+echo '# Asignando permisos de edición al proyecto'
+sh ./docker/commands/dev_files_permissions.sh
+sh ./docker/commands/dev_dir_permissions.sh
+
+echo '# Servicio instalado con éxito. Realice las siguientes configuraciones para terminar.'
+echo ''
+echo '1. Agregue el valor \App\Http\Middleware\AuthenticateAccessMiddleware::class en app\Http\Kernel.php en la variable $middleware'
+echo '2. Agregue la clave access_secrets con el valor env("ACCESS_SECRETS") en config\services.php'
+echo "3. Agregue la clave api_gateway con el valor array ['base_uri' => env('API_GATEWAY_BASE_URI'), 'access_secret' => env('API_GATEWAY_ACCESS_SECRET')] en config\services.php. Configure estos valores en el archivo .env"
+echo '4. Configure su archivo .env'

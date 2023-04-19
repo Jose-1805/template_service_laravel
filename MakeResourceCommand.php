@@ -54,7 +54,7 @@ class MakeResourceCommand extends Command
         $this->comment("Creando recursos iniciales con artisan");
         Artisan::call('make:model '.$this->getClassName($this->argument('name')).' -m -c -R --api');
         @unlink($path_controller);
-        $this->comment("Recursos iniciales creados con éxito");
+        $this->info("Recursos iniciales creados con éxito");
 
 
         $this->comment('Creando controlador ...');
