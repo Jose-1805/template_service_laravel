@@ -2,15 +2,14 @@
 
 namespace App\Rules;
 
-use App\Services\ApiGateway;
-use Illuminate\Contracts\Validation\InvokableRule;
-use Illuminate\Support\Facades\Log;
+use App\Traits\ApiGatewayConsumer;
+use Closure;
+use Illuminate\Contracts\Validation\ValidationRule;
 
-/**
- * Regla para validar respuesta obtenida de un método del ApiGateway
- */
-class OkApiGatewayResponse implements InvokableRule
+class OkApiGatewayResponse implements ValidationRule
 {
+    use ApiGatewayConsumer;
+
     protected $method;
     protected $path;
     protected $params;
@@ -24,7 +23,7 @@ class OkApiGatewayResponse implements InvokableRule
      * @param string $path                      Ruta a donde se ejecuta la petición
      * @param string $method                    Tipo de método HTTP de la ruta
      * @param boolean $concat_value_to_path     Determina si el valor recibido en la validación se debe
-     *                                          concatenar a la ruta
+     *                                          concatenar a $path
      * @param array $params                     Parámetros adicionales para enviar en la solicitud
      * @param boolean $is_file                  Determina si la ruta genera un archivo como respuesta
      */
@@ -41,12 +40,9 @@ class OkApiGatewayResponse implements InvokableRule
     /**
      * Run the validation rule.
      *
-     * @param  string  $attribute
-     * @param  mixed  $value
      * @param  \Closure(string): \Illuminate\Translation\PotentiallyTranslatedString  $fail
-     * @return void
      */
-    public function __invoke($attribute, $value, $fail)
+    public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         $final_path = $this->path;
         if (substr($this->path, -1) != '/') {
@@ -54,7 +50,7 @@ class OkApiGatewayResponse implements InvokableRule
         }
         $final_path .= $value;
 
-        $response = ApiGateway::performRequest($this->method, $final_path, $this->params, $this->is_file);
+        $response = $this->performRequest($this->method, $final_path, $this->params, $this->is_file);
         // Si se obtiene una respuesta válida del Api Gateway y es un error
         if (is_array($response) && array_key_exists('code', $response) && (intval($response['code']) < 200 || intval($response['code']) >= 300)) {
             $fail($this->message);
