@@ -44,6 +44,9 @@ mkdir $default_path/app/Console/Commands
 echo '#  Creando comando para la generación de recursos y configuraciones de módulos del sistena'
 mv MakeResourceCommand.php $default_path/app/Console/Commands/MakeResourceCommand.php
 
+echo '#  Creando comando para la generación de tokens de acceso al servicio'
+mv MakeAccessTokenCommand.php $default_path/app/Console/Commands/MakeAccessTokenCommand.php
+
 echo '# Creando middleware de autenticación de solicitudes al servicio ...'
 mv AuthenticateAccessMiddleware.php $default_path/app/Http/Middleware/AuthenticateAccessMiddleware.php
 
