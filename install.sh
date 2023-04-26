@@ -79,6 +79,7 @@ sh ./docker/commands/dev_dir_permissions.sh
 echo '# Servicio instalado con éxito. Realice las siguientes configuraciones para terminar.'
 echo ''
 echo '1. Agregue el valor \App\Http\Middleware\AuthenticateAccessMiddleware::class en app\Http\Kernel.php en la variable $middleware'
-echo '2. Agregue la clave access_secrets con el valor env("ACCESS_SECRETS") en config\services.php'
-echo "3. Agregue la clave api_gateway con el valor array ['base_uri' => env('API_GATEWAY_BASE_URI'), 'access_secret' => env('API_GATEWAY_ACCESS_SECRET')] en config\services.php. Configure estos valores en el archivo .env"
-echo '4. Configure su archivo .env'
+echo '2. Ejecute el comando php artisan make:access_token en el contenedor para generar un token de acceso al servicio'
+echo '3. Agregue la clave access_tokens con el valor env("ACCESS_TOKENS") en config\services.php'
+echo "4. Agregue la clave api_gateway con el valor array ['base_uri' => env('API_GATEWAY_BASE_URI'), 'access_token' => env('API_GATEWAY_ACCESS_TOKEN')] en config\services.php. Configure estos valores en el archivo .env"
+echo '5. Configure su archivo .env'

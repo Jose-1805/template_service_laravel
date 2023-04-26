@@ -16,7 +16,7 @@ class AuthenticateAccessMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $validSecrets = explode(',', config('services.access_secrets'));
+        $validSecrets = explode(',', config('services.access_tokens'));
         if (in_array($request->header('Authorization'), $validSecrets)) {
             return $next($request);
         }

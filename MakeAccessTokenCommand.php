@@ -39,8 +39,10 @@ class MakeAccessTokenCommand extends Command
     {
 
         $this->comment('Agregando token ...');
-        $this->addAccessToken();
-        $this->info('Token agregado con éxito');
+        $result = $this->addAccessToken();
+        $result ?
+        $this->info('Token agregado con éxito') :
+        $this->comment('Tarea no ejecutada con éxito');
     }
 
     /**
@@ -50,26 +52,33 @@ class MakeAccessTokenCommand extends Command
      */
     public function addAccessToken()
     {
-        $token = Str::random(rand(20, 30));
-        $file = fopen(base_path('.env'), 'r+') or die('Error');
-        $content = "";
-        $is_added = false;
-        while ($line = fgets($file)) {
-            //Ya existe el key ACCESS_TOKENS y no se a añadido el nuevo token
-            if (str_contains($line, 'ACCESS_TOKENS=') && !$is_added) {
-                //Si hay más de un token separa por coma
-                $separator = strlen(trim($line)) > 14 ? "," : "";
-                $line = str_replace("ACCESS_TOKENS=", "ACCESS_TOKENS=$token$separator", $line);
-                $is_added = true;
+        $file_name = ".env";
+        if(!file_exists(base_path($file_name))) {
+            $this->error("No existe el archivo $file_name");
+            return false;
+        } else {
+            $token = Str::random(rand(30, 40));
+            $file = fopen(base_path($file_name), 'r+') or die('Error');
+            $content = "";
+            $is_added = false;
+            while ($line = fgets($file)) {
+                //Ya existe el key ACCESS_TOKENS y no se a añadido el nuevo token
+                if (str_contains($line, 'ACCESS_TOKENS=') && !$is_added) {
+                    //Si hay más de un token separa por coma
+                    $separator = strlen(trim($line)) > 14 ? "," : "";
+                    $line = str_replace("ACCESS_TOKENS=", "ACCESS_TOKENS=$token$separator", $line);
+                    $is_added = true;
+                }
+                $content .= $line;
             }
-            $content .= $line;
-        }
 
-        if(!$is_added) {
-            $content .= "ACCESS_TOKENS=$token\n";
+            if(!$is_added) {
+                $content .= "ACCESS_TOKENS=$token\n";
+            }
+            rewind($file);
+            fwrite($file, $content);
+            fclose($file);
+            return true;
         }
-        rewind($file);
-        fwrite($file, $content);
-        fclose($file);
     }
 }

@@ -22,7 +22,7 @@ trait ApiGatewayConsumer
         $func = strtolower($method);
 
         $request = Http::baseUrl($base_uri)->withHeaders([
-            'Authorization' => 'Bearer '.config("services.api_gateway.access_secret")
+            'Authorization' => 'Bearer '.config("services.api_gateway.access_token")
         ]);
 
         $has_file = false;
