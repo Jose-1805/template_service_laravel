@@ -56,6 +56,9 @@ php artisan lang:publish
 echo '# Creando archivos de internacionalización para español ...'
 mv $default_path/es $default_path/lang/
 
+echo '# Desinstalando laravel sanctum'
+composer remove laravel/sanctum
+
 echo '# Instalando laravel octane para mejorar el rendimiento de la aplicación ...'
 composer require laravel/octane --with-all-dependencies
 # Realiza la instalación de laravel octane con las respuestas de consola necesarias
