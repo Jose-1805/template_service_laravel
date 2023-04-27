@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Http;
 
 trait ApiGatewayConsumer
 {
+    // Usuario logueado al realizar la petición
+    public $user_id = null;
+
     /**
      * Solicitud http a un servicio del cluster
      * @param $method
@@ -22,7 +25,8 @@ trait ApiGatewayConsumer
         $func = strtolower($method);
 
         $request = Http::baseUrl($base_uri)->withHeaders([
-            'Authorization' => 'Bearer '.config("services.api_gateway.access_token")
+            'Authorization' => 'Bearer '.config("services.api_gateway.access_token"),
+            'user_id' => $this->user_id
         ]);
 
         $has_file = false;
