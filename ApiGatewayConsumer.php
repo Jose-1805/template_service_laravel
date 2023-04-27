@@ -11,14 +11,14 @@ trait ApiGatewayConsumer
     public $user_id = null;
 
     /**
-     * Solicitud http a un servicio del cluster
+     * Solicitud http al api gateway del cluster
      * @param $method
      * @param $requestUrl
      * @param array $formParams
      * @param bool $isFile
      * @return mixed
      */
-    public static function performRequest($method, $requestUrl, $formParams = [], $isFile = false): mixed
+    public function performRequest($method, $requestUrl, $formParams = [], $isFile = false): mixed
     {
         $base_uri = config("services.api_gateway.base_uri");
 
