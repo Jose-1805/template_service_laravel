@@ -40,9 +40,12 @@ class MakeAccessTokenCommand extends Command
 
         $this->comment('Agregando token ...');
         $result = $this->addAccessToken();
-        $result ?
-        $this->info('Token agregado con éxito') :
-        $this->comment('Tarea no ejecutada con éxito');
+        if($result) {
+            $this->comment('Token agregado con éxito, lo debe almacenar en un lugar seguro en el api gateway');
+            $this->info($result);
+        } else {
+            $this->comment('Tarea no ejecutada con éxito');
+        }
     }
 
     /**
@@ -78,7 +81,7 @@ class MakeAccessTokenCommand extends Command
             rewind($file);
             fwrite($file, $content);
             fclose($file);
-            return true;
+            return $token;
         }
     }
 }
