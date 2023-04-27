@@ -61,6 +61,7 @@ mv $default_path/es $default_path/lang/
 
 echo '# Desinstalando laravel sanctum'
 composer remove laravel/sanctum
+rm $default_path/config/sanctum.php
 
 echo '# Instalando laravel octane para mejorar el rendimiento de la aplicación ...'
 composer require laravel/octane --with-all-dependencies
