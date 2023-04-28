@@ -26,7 +26,7 @@ trait ApiGatewayConsumer
 
         $request = Http::baseUrl($base_uri)->withHeaders([
             'Authorization' => 'Bearer '.config("services.api_gateway.access_token"),
-            'user_id' => $this->user_id
+            'UserId' => $this->user_id
         ]);
 
         $has_file = false;
