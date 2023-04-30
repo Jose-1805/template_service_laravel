@@ -5,6 +5,28 @@ tmp_path="/tmp/$app_name"
 #default_path="/home/jose/Descargas/new/template_service"
 #tmp_path="/home/jose/Descargas/new/tmp_$app_name"
 
+REDIS=0
+# Definir los argumentos
+while [[ $# -gt 0 ]]
+do
+key="$1"
+case $key in
+    -r|--redis)
+    REDIS=1
+    shift
+    shift
+    ;;
+    #-o|--output)
+    #OUTPUT="$2"
+    #shift
+    #shift
+    #;;
+    *)
+    shift
+    ;;
+esac
+done
+
 echo "shopt -s dotglob"
 shopt -s dotglob
 
