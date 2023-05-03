@@ -20,6 +20,7 @@ mv $default_path/app/Http/Middleware/AuthenticateAccessMiddleware.php $tmp_path/
 mv $default_path/app/Exceptions/Handler.php $tmp_path/Handler.php
 mv $default_path/app/Console/Commands/MakeResourceCommand.php $tmp_path/MakeResourceCommand.php
 mv $default_path/app/Console/Commands/MakeAccessTokenCommand.php $tmp_path/MakeAccessTokenCommand.php
+mv $default_path/config/amqp.php $tmp_path/amqp.php
 mv $default_path/dev_commands.txt $tmp_path/dev_commands.sh
 mv $default_path/instrucciones.txt $tmp_path/instrucciones.txt
 mv $default_path/install.sh $tmp_path/install.sh

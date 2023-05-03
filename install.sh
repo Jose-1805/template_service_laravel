@@ -92,6 +92,10 @@ printf '0\nyes' | php artisan octane:install
 # Permisos de ejecución para el archivo rr
 chmod +x $default_path/rr
 
+echo '# Instalando paquete de conexión a rabbitmq (bschmitt/laravel-amqp)'
+composer require bschmitt/laravel-amqp.'
+mv amqp.php $default_path/config/amqp.php
+
 if [ "$REDIS" -eq 1 ]
 then
     echo '# Insalando redis'
@@ -113,8 +117,17 @@ echo ''
 echo '* Agregue el valor \App\Http\Middleware\AuthenticateAccessMiddleware::class en app\Http\Kernel.php en la variable $middleware'
 echo '* Ejecute el comando php artisan make:access_token en el contenedor para generar un token de acceso al servicio'
 echo '* Agregue la clave access_tokens con el valor env("ACCESS_TOKENS") en config\services.php'
-echo "* Agregue la clave api_gateway con el valor array ['base_uri' => env('API_GATEWAY_BASE_URI'), 'access_token' => env('API_GATEWAY_ACCESS_TOKEN')] en config\services.php. Configure estos valores en el archivo .env"
-echo '* Configure su archivo .env'
+echo '* Agregue la clave api_gateway con el valor array ['base_uri' => env('API_GATEWAY_BASE_URI'), 'access_token' => env('API_GATEWAY_ACCESS_TOKEN')] en config\services.php. Configure estos valores en el archivo .env'
+echo '* Agregue Bschmitt\Amqp\AmqpServiceProvider::class a la lista de providers en el archivo config/app.php'
+echo '* Agregue "Amqp" => Bschmitt\Amqp\Facades\Amqp::class a la lista de aliases en el archivo config/app.php'
+echo '* Agregue las siguientes variables a su archivo .env para configurar la conexión a rabbitmq'
+echo '          RABBITMQ_HOST'
+echo '          RABBITMQ_PORT'
+echo '          RABBITMQ_USER'
+echo '          RABBITMQ_PASSWORD'
+echo '          RABBITMQ_VHOST'
+echo '* Configure QUEUE_CONNECTION=rabbitmq en su erchivo .env'
+echo '* Configure su archivo .env para el acceso a la base de datos'
 if [ "$REDIS" -eq 1 ]
 then
     echo '* Configure su archivo .env para la conexión con redis (datos de acceso, host, puerto, cliente. Si va a manejar sesión, cache, etc)'
