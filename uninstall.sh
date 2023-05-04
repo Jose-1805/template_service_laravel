@@ -12,14 +12,15 @@ echo '# Moviendo archivos y directorios ...'
 mv $default_path/docker $tmp_path/
 mv $default_path/lang/es $tmp_path/
 mv $default_path/app/Helpers $tmp_path/
+mv $default_path/app/Console/Commands $tmp_path/
 mv $default_path/stubs $tmp_path/
+mv $default_path/app/Background $tmp_path/
+mv $default_path/config/background.php $tmp_path/background.php
 mv $default_path/app/Rules/OkApiGatewayResponse.php $tmp_path/OkApiGatewayResponse.php
 mv $default_path/app/Traits/ApiGatewayConsumer.php $tmp_path/ApiGatewayConsumer.php
 mv $default_path/app/Traits/ApiResponser.php $tmp_path/ApiResponser.php
 mv $default_path/app/Http/Middleware/AuthenticateAccessMiddleware.php $tmp_path/AuthenticateAccessMiddleware.php
 mv $default_path/app/Exceptions/Handler.php $tmp_path/Handler.php
-mv $default_path/app/Console/Commands/MakeResourceCommand.php $tmp_path/MakeResourceCommand.php
-mv $default_path/app/Console/Commands/MakeAccessTokenCommand.php $tmp_path/MakeAccessTokenCommand.php
 mv $default_path/config/amqp.php $tmp_path/amqp.php
 mv $default_path/dev_commands.txt $tmp_path/dev_commands.sh
 mv $default_path/instrucciones.txt $tmp_path/instrucciones.txt

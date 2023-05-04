@@ -60,14 +60,8 @@ mv ApiResponser.php $default_path/app/Traits/ApiResponser.php
 echo '# Creando trait para consumir métodos del Api Gateway desde un servicio...'
 mv ApiGatewayConsumer.php $default_path/app/Traits/ApiGatewayConsumer.php
 
-echo '# Creando directorio para almacenamiento de comandos ...'
-mkdir $default_path/app/Console/Commands
-
-echo '#  Creando comando para la generación de recursos y configuraciones de módulos del sistena'
-mv MakeResourceCommand.php $default_path/app/Console/Commands/MakeResourceCommand.php
-
-echo '#  Creando comando para la generación de tokens de acceso al servicio'
-mv MakeAccessTokenCommand.php $default_path/app/Console/Commands/MakeAccessTokenCommand.php
+echo '#  Creando comandos'
+mv $default_path/Commands $default_path/app/Console/
 
 echo '# Creando middleware de autenticación de solicitudes al servicio ...'
 mv AuthenticateAccessMiddleware.php $default_path/app/Http/Middleware/AuthenticateAccessMiddleware.php
@@ -80,6 +74,10 @@ php artisan lang:publish
 
 echo '# Creando archivos de internacionalización para español ...'
 mv $default_path/es $default_path/lang/
+
+echo '# Creando archivos de ejecución en segundo plano ...'
+mv $default_path/Background $default_path/app/
+mv $default_path/background.php $default_path/config/background.php
 
 echo '# Desinstalando laravel sanctum'
 composer remove laravel/sanctum
