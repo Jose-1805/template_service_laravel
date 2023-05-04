@@ -6,7 +6,7 @@ use App\Background\src\Resolver;
 
 class $CLASS_NAME$ implements Resolver
 {
-    public function handle($input_data, $user_id): array
+    public function handle($data): array
     {
         // Su código aquí
 
