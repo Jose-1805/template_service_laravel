@@ -7,9 +7,8 @@ interface Resolver
     /**
      * Procesa la solicitud y retorna una respuesta para enviar al solicitante
      *
-     * @param array|object $input_data
-     * @param string|null $user_id
+     * @param array $data
      * @return array
      */
-    public function handle($input_data, $user_id): array;
+    public function handle($data): array;
 }

@@ -15,6 +15,8 @@ class BackgroundRequestResolver
     private $event_response = "background_request_result";
     private $queue_response = "api_gateway_queue.default";
     private $publish_response = true;
+    // Datos por defecto que se envían en la respuesta
+    private $response_keys = ["id", "event", "output_data"];
 
 
     public function __construct(string $event, string $data)
@@ -43,11 +45,13 @@ class BackgroundRequestResolver
      */
     public function responseData(): string
     {
-        $response = [
-            "id" => $this->data["id"],
-            "event" => $this->data["event"],
-            "output_data" => $this->data["output_data"],
-        ];
+        $response = [];
+
+        foreach($this->response_keys as $key) {
+            if(array_key_exists($key, $this->data)) {
+                $response[$key] = $this->data[$key];
+            }
+        }
 
         return json_encode($response);
     }
@@ -62,7 +66,7 @@ class BackgroundRequestResolver
         $resolver_class = config('background.events.'.$this->event);
         if($resolver_class) {
             $resolver = new ($resolver_class)();
-            $data_response = $resolver->handle($this->data["input_data"], $this->data["user_id"]);
+            $data_response = $resolver->handle($this->data);
             $this->data["output_data"] = array_key_exists("response", $data_response) && is_array($data_response["response"]) ? $data_response["response"] : [] ;
             // Se envían datos para cambiar el destino de la respuesta
             if(array_key_exists("options", $data_response) && is_array($data_response["options"])) {
@@ -74,6 +78,9 @@ class BackgroundRequestResolver
                 }
                 if(array_key_exists("publish", $data_response["options"])) {
                     $this->publish_response = $data_response["options"]["publish"] ? true : false;
+                }
+                if(array_key_exists("response_keys", $data_response["options"]) && is_array($data_response["options"]["response_keys"])) {
+                    $this->response_keys = $data_response["options"]["response_keys"];
                 }
             }
             $this->publish_response && $this->publishResult();
