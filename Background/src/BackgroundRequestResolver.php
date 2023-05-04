@@ -31,7 +31,7 @@ class BackgroundRequestResolver
      */
     public function publishResult(): void
     {
-        if($queue) {
+        if($this->queue_response) {
             \Amqp::publish($this->event_response, $this->responseData(), ["queue" => $this->queue_response]);
         }
     }
