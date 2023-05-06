@@ -124,7 +124,6 @@ echo '          RABBITMQ_PORT'
 echo '          RABBITMQ_USER'
 echo '          RABBITMQ_PASSWORD'
 echo '          RABBITMQ_VHOST'
-echo '* Configure QUEUE_CONNECTION=rabbitmq en su erchivo .env'
 echo '* Configure su archivo .env para el acceso a la base de datos'
 if [ "$REDIS" -eq 1 ]
 then
