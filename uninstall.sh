@@ -20,6 +20,8 @@ mv $default_path/app/Rules/OkApiGatewayResponse.php $tmp_path/OkApiGatewayRespon
 mv $default_path/app/Traits/ApiGatewayConsumer.php $tmp_path/ApiGatewayConsumer.php
 mv $default_path/app/Traits/ApiResponser.php $tmp_path/ApiResponser.php
 mv $default_path/app/Http/Middleware/AuthenticateAccessMiddleware.php $tmp_path/AuthenticateAccessMiddleware.php
+mv $default_path/app/Http/Middleware/SetUserRequest.php $tmp_path/SetUserRequest.php
+mv $default_path/app/Models/User.php $tmp_path/User.php
 mv $default_path/app/Exceptions/Handler.php $tmp_path/Handler.php
 mv $default_path/config/amqp.php $tmp_path/amqp.php
 mv $default_path/dev_commands.txt $tmp_path/dev_commands.sh

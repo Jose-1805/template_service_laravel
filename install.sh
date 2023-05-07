@@ -66,6 +66,12 @@ mv $default_path/Commands $default_path/app/Console/
 echo '# Creando middleware de autenticación de solicitudes al servicio ...'
 mv AuthenticateAccessMiddleware.php $default_path/app/Http/Middleware/AuthenticateAccessMiddleware.php
 
+echo '# Creando middleware para asignar usuario de la solicitud ...'
+mv SetUserRequest.php $default_path/app/Http/Middleware/SetUserRequest.php
+
+echo '# Creando modelo de usuario ...'
+mv User.php $default_path/app/Models/User.php
+
 echo '# Creando manejador de excepciones del sistema ...'
 mv Handler.php $default_path/app/Exceptions/Handler.php
 
@@ -113,6 +119,7 @@ sh ./docker/commands/dev_dir_permissions.sh
 echo '# Servicio instalado con éxito. Realice las siguientes configuraciones para terminar.'
 echo ''
 echo '* Agregue el valor \App\Http\Middleware\AuthenticateAccessMiddleware::class en app\Http\Kernel.php en la variable $middleware'
+echo '* Agregue el valor "set_user_request" => \App\Http\Middleware\SetUserRequest::class, en app\Http\Kernel.php en la variable $middlewareAliases'
 echo '* Ejecute el comando php artisan make:access_token en el contenedor para generar un token de acceso al servicio'
 echo '* Agregue la clave access_tokens con el valor env("ACCESS_TOKENS") en config\services.php'
 echo '* Agregue la clave api_gateway con el valor array ['base_uri' => env('API_GATEWAY_BASE_URI'), 'access_token' => env('API_GATEWAY_ACCESS_TOKEN')] en config\services.php. Configure estos valores en el archivo .env'
