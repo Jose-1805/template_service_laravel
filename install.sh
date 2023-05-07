@@ -60,6 +60,9 @@ mv ApiResponser.php $default_path/app/Traits/ApiResponser.php
 echo '# Creando trait para consumir métodos del Api Gateway desde un servicio...'
 mv ApiGatewayConsumer.php $default_path/app/Traits/ApiGatewayConsumer.php
 
+echo '# Creando trait para crear un Validator a partir de un FormRequest...'
+mv FormRequestToValidator.php $default_path/app/Traits/FormRequestToValidator.php
+
 echo '#  Creando comandos'
 mv $default_path/Commands $default_path/app/Console/
 

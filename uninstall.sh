@@ -19,6 +19,7 @@ mv $default_path/config/background.php $tmp_path/background.php
 mv $default_path/app/Rules/OkApiGatewayResponse.php $tmp_path/OkApiGatewayResponse.php
 mv $default_path/app/Traits/ApiGatewayConsumer.php $tmp_path/ApiGatewayConsumer.php
 mv $default_path/app/Traits/ApiResponser.php $tmp_path/ApiResponser.php
+mv $default_path/app/Traits/FormRequestToValidator.php $tmp_path/FormRequestToValidator.php
 mv $default_path/app/Http/Middleware/AuthenticateAccessMiddleware.php $tmp_path/AuthenticateAccessMiddleware.php
 mv $default_path/app/Http/Middleware/SetUserRequest.php $tmp_path/SetUserRequest.php
 mv $default_path/app/Models/User.php $tmp_path/User.php
