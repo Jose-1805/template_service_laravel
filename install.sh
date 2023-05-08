@@ -125,7 +125,7 @@ echo '* Agregue el valor \App\Http\Middleware\AuthenticateAccessMiddleware::clas
 echo '* Agregue el valor "set_user_request" => \App\Http\Middleware\SetUserRequest::class, en app\Http\Kernel.php en la variable $middlewareAliases'
 echo '* Ejecute el comando php artisan make:access_token en el contenedor para generar un token de acceso al servicio'
 echo '* Agregue la clave access_tokens con el valor env("ACCESS_TOKENS") en config\services.php'
-echo '* Agregue la clave api_gateway con el valor array ['base_uri' => env('API_GATEWAY_BASE_URI'), 'access_token' => env('API_GATEWAY_ACCESS_TOKEN')] en config\services.php. Configure estos valores en el archivo .env'
+echo '* Agregue la clave api_gateway con el valor array ['base_uri' => env('API_GATEWAY_BASE_URI'), 'access_token' => env('API_GATEWAY_ACCESS_TOKEN'), 'public_url' => env('API_GATEWAY_PUBLIC_URL', 'http://localhost:8000'),] en config\services.php. Configure estos valores en el archivo .env'
 echo '* Agregue Bschmitt\Amqp\AmqpServiceProvider::class a la lista de providers en el archivo config/app.php'
 echo '* Agregue "Amqp" => Bschmitt\Amqp\Facades\Amqp::class a la lista de aliases en el archivo config/app.php'
 echo '* Agregue las siguientes variables a su archivo .env para configurar la conexión a rabbitmq'
