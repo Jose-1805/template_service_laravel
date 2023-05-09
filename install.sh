@@ -92,7 +92,7 @@ printf '0\nyes' | php artisan octane:install
 chmod +x $default_path/rr
 
 echo '# Instalando paquete de conexión a rabbitmq (bschmitt/laravel-amqp)'
-composer require bschmitt/laravel-amqp.'
+composer require bschmitt/laravel-amqp
 mv amqp.php $default_path/config/amqp.php
 
 if [ "$REDIS" -eq 1 ]
