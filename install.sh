@@ -51,17 +51,9 @@ mkdir $default_path/app/Rules
 echo '# Creando regla para validar respuesta obtenida de un método del ApiGateway ...'
 mv OkApiGatewayResponse.php $default_path/app/Rules/OkApiGatewayResponse.php
 
-echo '# Creando directorio para almacenamiento de Traits'
+echo '# Creando Traits ...'
 mkdir $default_path/app/Traits
-
-echo '# Creando Trait de estandarización de respuestas ...'
-mv ApiResponser.php $default_path/app/Traits/ApiResponser.php
-
-echo '# Creando trait para consumir métodos del Api Gateway desde un servicio...'
-mv ApiGatewayConsumer.php $default_path/app/Traits/ApiGatewayConsumer.php
-
-echo '# Creando trait para crear un Validator a partir de un FormRequest...'
-mv FormRequestToValidator.php $default_path/app/Traits/FormRequestToValidator.php
+mv $default_path/Traits/ $default_path/app/
 
 echo '#  Creando comandos'
 mv $default_path/Commands $default_path/app/Console/

@@ -72,6 +72,8 @@ class MakeResourceCommand extends Command
         $this->comment('Agregando rutas ...');
         $this->addRoute($this->getClassName($this->argument('name')) . 'Controller', $this->getRoute());
         $this->info('Rutas agregadas con éxito');
+        $this->comment('*************************************************');
+        $this->info('Proceso terminado, para utilizar la paginación de modelos debe agregar los array public $sort_columns y public $search_colums al modelo creado o al controlador.');
     }
 
     /**
