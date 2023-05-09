@@ -6,8 +6,30 @@ use App\Background\src\Resolver;
 
 class $CLASS_NAME$ implements Resolver
 {
+    private $input_data = [];
+
+    /**
+     * Asigna los datos de entrada en array. El parámetro debe ser un array
+     * que contenga un key llamado input_data
+     *
+     * @param array $data
+     * @return void
+     */
+    public function setInputData(array $data)
+    {
+        $this->input_data = array_key_exists("input_data", $data) && is_array($data["input_data"])
+            ? $data["input_data"]
+            : (
+                array_key_exists("input_data", $data)
+                ? json_decode($data["input_data"], true)
+                : []
+            );
+    }
+
     public function handle($data): array
     {
+        $this->setInputData($data);
+
         // Su código aquí
 
         return [
