@@ -20,12 +20,12 @@ trait ApiGatewayConsumer
      */
     public function performRequest($method, $requestUrl, $formParams = [], $isFile = false): mixed
     {
-        $base_uri = config("services.api_gateway.base_uri");
+        $base_uri = config('services.api_gateway.base_uri');
 
         $func = strtolower($method);
 
         $request = Http::baseUrl($base_uri)->withHeaders([
-            'Authorization' => 'Bearer '.config("services.api_gateway.access_token"),
+            'Authorization' => 'Bearer '.config('services.api_gateway.access_token'),
             'UserId' => $this->user_id
         ]);
 
@@ -59,7 +59,7 @@ trait ApiGatewayConsumer
                     echo $response->body();
                 }, '', $response->headers());
             }
-            $data = ['error' => config('app.debug') && strlen($response->body()) ? $response->body() : "Error interno del servidor", 'code' => 500];
+            $data = ['error' => config('app.debug') && strlen($response->body()) ? $response->body() : 'Error interno del servidor', 'code' => 500];
         }
 
         return $data;

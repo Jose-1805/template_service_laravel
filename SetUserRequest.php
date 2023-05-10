@@ -17,9 +17,9 @@ class SetUserRequest
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if($request->header("UserId")) {
+        if($request->header('UserId')) {
             $user = new User();
-            $user->id = $request->header("UserId");
+            $user->id = $request->header('UserId');
 
             $request->setUserResolver(function () use ($user) {
                 return $user;

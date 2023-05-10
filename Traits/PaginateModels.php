@@ -21,7 +21,7 @@ trait PaginateModels
     {
         return $this->applyFilters($builder, $request)->paginate($request->per_page ?? $per_page)
         ->withQueryString()
-        ->withPath(config("services.api_gateway.public_url"));
+        ->withPath(config('services.api_gateway.public_url'));
     }
 
     /**
@@ -47,20 +47,20 @@ trait PaginateModels
      */
     public function applySearch(Builder $builder, string $search = null): Builder
     {
-        $search_columns = property_exists($this, "search_columns") && gettype($this->search_columns) == "array" ?
+        $search_columns = property_exists($this, 'search_columns') && gettype($this->search_columns) == 'array' ?
             $this->search_columns
             : (new ($builder->getModel())())->search_columns;
 
-        if ($search && $search_columns && gettype($search_columns) == "array") {
-            $like = "%".$search."%";
+        if ($search && $search_columns && gettype($search_columns) == 'array') {
+            $like = '%'.$search.'%';
             $builder = $builder->where(function ($q) use ($like, $search_columns, $builder) {
                 $i = 0;
                 foreach($search_columns as $field) {
                     if($i == 0) {
-                        $q->where($this->formatFieldName($builder, $field), "LIKE", $like);
+                        $q->where($this->formatFieldName($builder, $field), 'LIKE', $like);
                         $i++;
                     } else {
-                        $q->orWhere($this->formatFieldName($builder, $field), "LIKE", $like);
+                        $q->orWhere($this->formatFieldName($builder, $field), 'LIKE', $like);
                     }
                 }
             });
@@ -80,13 +80,13 @@ trait PaginateModels
     public function applySort(Builder $builder, string $sort = null, string $direction = null): Builder
     {
 
-        $sort_columns = property_exists($this, "sort_columns") && gettype($this->sort_columns) == "array" ?
+        $sort_columns = property_exists($this, 'sort_columns') && gettype($this->sort_columns) == 'array' ?
             $this->sort_columns
             : (new ($builder->getModel())())->sort_columns;
 
-        if($sort_columns && gettype($sort_columns) == "array") {
+        if($sort_columns && gettype($sort_columns) == 'array') {
             if(in_array($sort, $sort_columns)) {
-                $builder = $builder->orderBy($this->formatFieldName($builder, $sort), $direction == "DESC" ? "DESC" : "ASC");
+                $builder = $builder->orderBy($this->formatFieldName($builder, $sort), $direction == 'DESC' ? 'DESC' : 'ASC');
             }
         }
         return $builder;
@@ -112,12 +112,12 @@ trait PaginateModels
      */
     public function formatFieldName(Builder $builder, string $field): string
     {
-        $result = "";
-        $data = explode(".", $field);
+        $result = '';
+        $data = explode('.', $field);
         if(count($data) > 1) {
             $result = $field;
         } else {
-            $result = $this->getTableName($builder).".".$field;
+            $result = $this->getTableName($builder).'.'.$field;
         }
         return $result;
     }

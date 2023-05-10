@@ -55,28 +55,28 @@ class MakeAccessTokenCommand extends Command
      */
     public function addAccessToken()
     {
-        $file_name = ".env";
+        $file_name = '.env';
         if(!file_exists(base_path($file_name))) {
-            $this->error("No existe el archivo $file_name");
+            $this->error('No existe el archivo '.$file_name);
             return false;
         } else {
             $token = Str::random(rand(30, 40));
             $file = fopen(base_path($file_name), 'r+') or die('Error');
-            $content = "";
+            $content = '';
             $is_added = false;
             while ($line = fgets($file)) {
                 //Ya existe el key ACCESS_TOKENS y no se a añadido el nuevo token
                 if (str_contains($line, 'ACCESS_TOKENS=') && !$is_added) {
                     //Si hay más de un token separa por coma
-                    $separator = strlen(trim($line)) > 14 ? "," : "";
-                    $line = str_replace("ACCESS_TOKENS=", "ACCESS_TOKENS=$token$separator", $line);
+                    $separator = strlen(trim($line)) > 14 ? ',' : '';
+                    $line = str_replace('ACCESS_TOKENS=', 'ACCESS_TOKENS='.$token.$separator, $line);
                     $is_added = true;
                 }
                 $content .= $line;
             }
 
             if(!$is_added) {
-                $content .= "ACCESS_TOKENS=$token\n";
+                $content .= 'ACCESS_TOKENS='.$token.PHP_EOL;
             }
             rewind($file);
             fwrite($file, $content);

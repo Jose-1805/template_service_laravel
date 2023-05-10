@@ -51,10 +51,10 @@ class MakeResourceCommand extends Command
     {
         $path_controller = base_path('app/Http/Controllers') .'/' .$this->getClassName($this->argument('name')) . 'Controller.php';
 
-        $this->comment("Creando recursos iniciales con artisan");
+        $this->comment('Creando recursos iniciales con artisan');
         Artisan::call('make:model '.$this->getClassName($this->argument('name')).' -m -c -R --api');
         @unlink($path_controller);
-        $this->info("Recursos iniciales creados con éxito");
+        $this->info('Recursos iniciales creados con éxito');
 
 
         $this->comment('Creando controlador ...');
@@ -134,15 +134,15 @@ class MakeResourceCommand extends Command
     {
         $file = fopen(base_path('routes/api.php'), 'r+') or die('Error');
         $use_is_added = false;
-        $content = "";
+        $content = '';
         while ($line = fgets($file)) {
             if (str_contains($line, 'use ') && !$use_is_added) {
-                $content .= "use App\Http\Controllers\\$controller_name;\n";
+                $content .= 'use App\Http\Controllers\\$controller_name;'.PHP_EOL;
                 $use_is_added = true;
             }
             $content .= $line;
         }
-        $content .= "Route::apiResource('$route_name', $controller_name::class);\n";
+        $content .= 'Route::apiResource(\''.$route_name.'\', $controller_name::class);'.PHP_EOL;
         rewind($file);
         fwrite($file, $content);
         fclose($file);

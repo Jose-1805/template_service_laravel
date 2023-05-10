@@ -36,7 +36,7 @@ trait ApiResponser
      * @param string|array $data
      * @return JsonResponse
      */
-    public function httpOkResponse($data = "Success."): JsonResponse
+    public function httpOkResponse($data = 'Success.'): JsonResponse
     {
         return $this->generateResponse($data, Response::HTTP_OK);
     }
@@ -49,6 +49,6 @@ trait ApiResponser
      */
     public function httpUnauthorizedResponse(): JsonResponse
     {
-        return $this->generateResponse("Unauthorized.", Response::HTTP_UNAUTHORIZED);
+        return $this->generateResponse('Unauthorized.', Response::HTTP_UNAUTHORIZED);
     }
 }

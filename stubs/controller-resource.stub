@@ -18,7 +18,7 @@ class $CLASS_NAME$Controller extends Controller
     public function __construct()
     {
         // Middleware para asignar el usuario de la solicitud
-        $this->middleware("set_user_request");
+        $this->middleware('set_user_request');
     }
 
     /**
@@ -30,7 +30,7 @@ class $CLASS_NAME$Controller extends Controller
     public function index(Request $request)
     {
         return $this->httpOkResponse(
-            $this->paginate($CLASS_NAME$::select("*"), $request)
+            $this->paginate($CLASS_NAME$::select('*'), $request)
         );
     }
 
