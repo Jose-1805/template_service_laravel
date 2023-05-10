@@ -86,6 +86,7 @@ class MakeResolverCommand extends Command
     {
         return [
             'CLASS_NAME' => $this->getClassName($this->argument('name')),
+            'CODE' => $this->getCodeExample($this->option('event'))
         ];
     }
 
@@ -126,5 +127,79 @@ class MakeResolverCommand extends Command
         rewind($file);
         fwrite($file, $content);
         fclose($file);
+    }
+
+    /**
+     * Código de ejemplo base de acuerdo al evento
+     *
+     * @param string|null $event
+     * @return string
+     */
+    public function getCodeExample($event = null): string
+    {
+        $event = strtolower($event);
+        $code = 'Su código aquí';
+        if($event) {
+            if(str_contains($event, 'create') || str_contains($event, 'store')) {
+                $code = '
+        /*$validator = $this->formRequestToValidator(StoreModelRequest::class, $this->input_data);
+        $errors = $validator->errors();
+
+        $response = [];
+
+        // La validación no pasa
+        if($errors->count()) {
+            $response = [\'data\' => $errors, \'code\' => Response::HTTP_UNPROCESSABLE_ENTITY];
+        } else {
+            $model = Model::create($this->input_data);
+            $response = [\'data\' => $model, \'code\' => Response::HTTP_CREATED];
+        }*/
+                ';
+            } elseif(str_contains($event, 'update') || str_contains($event, 'upgrade')) {
+                $code = '
+        /*$response = [];
+
+        if(!array_key_exists(\'id\', $this->input_data)) {
+            $response = [\'data\' => [\'Elemento no encontrado\'], \'code\' => Response::HTTP_NOT_FOUND];
+        } else {
+            $model = Model::find($this->input_data[\'id\']);
+
+            if(!$model) {
+                $response = [\'data\' => [\'Elemento no encontrado\'], \'code\' => Response::HTTP_NOT_FOUND];
+            } else {
+                $validator = $this->formRequestToValidator(UpdateModelRequest::class, $this->input_data, $model->id);
+                $errors = $validator->errors();
+
+
+                // La validación no pasa
+                if($errors->count()) {
+                    $response = [\'data\' => $errors, \'code\' => Response::HTTP_UNPROCESSABLE_ENTITY];
+                } else {
+                    $model->update($this->input_data);
+                    $response = [\'data\' => $model, \'code\' => Response::HTTP_OK];
+                }
+            }
+        }*/
+                ';
+            } elseif(str_contains($event, 'delete') || str_contains($event, 'destroy')) {
+                $code = '
+        /*$response = [];
+
+        if(!array_key_exists("id", $this->input_data)) {
+            $response = ["data" => ["Elemento no encontrado"], "code" => Response::HTTP_NOT_FOUND];
+        } else {
+            $model = Model::find($this->input_data["id"]);
+
+            if(!$model) {
+                $response = ["data" => ["Elemento no encontrado"], "code" => Response::HTTP_NOT_FOUND];
+            } else {
+                $model->delete();
+                $response = ["data" => $model, "code" => Response::HTTP_OK];
+            }
+        }*/
+                ';
+            }
+        }
+        return $code;
     }
 }

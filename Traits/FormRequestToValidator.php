@@ -2,7 +2,8 @@
 
 namespace App\Traits;
 
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Validator as ValidationValidator;
+use Illuminate\Validation\Validator;
 
 trait FormRequestToValidator
 {
@@ -15,12 +16,12 @@ trait FormRequestToValidator
      *
      * @param string $form_request_class
      * @param array $data
-     * @param [type] $id
-     * @return void
+     * @param string $id
+     * @return Validator
      */
-    public function formRequestToValidator(string $form_request_class, array $data, $id = null)
+    public function formRequestToValidator(string $form_request_class, array $data, $id = null): Validator
     {
         $request = new ($form_request_class)();
-        return Validator::make($data, $request->rules($id), $request->messages(), $request->attributes());
+        return ValidationValidator::make($data, $request->rules($id), $request->messages(), $request->attributes());
     }
 }

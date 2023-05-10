@@ -29,9 +29,7 @@ class $CLASS_NAME$ implements Resolver
     public function handle($data): array
     {
         $this->setInputData($data);
-
-        // Su código aquí
-
+        $CODE$
         return [
             // Respuesta que se enviará en el campo output_data
             'response' => [],
