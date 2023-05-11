@@ -142,7 +142,13 @@ class MakeResolverCommand extends Command
         if($event) {
             if(str_contains($event, 'create') || str_contains($event, 'store')) {
                 $code = '
-        /*$validator = $this->formRequestToValidator(StoreModelRequest::class, $this->input_data);
+        /*
+        //Si se envían archivos se hace la conversión
+        if(array_key_exists("param_name", $this->input_data)) {
+            $this->input_data["param_name"] = $this->convertToUploadedFile($this->input_data["param_name"]);
+        }
+
+        $validator = $this->formRequestToValidator(StoreModelRequest::class, $this->input_data);
         $errors = $validator->errors();
 
         $response = [];
@@ -153,7 +159,11 @@ class MakeResolverCommand extends Command
         } else {
             $model = Model::create($this->input_data);
             $response = [\'data\' => $model, \'code\' => Response::HTTP_CREATED];
-        }*/
+        }
+
+        //Se eliminan archivos temporales convertidos a UploadedFile
+        $this->deleteTempFiles();
+        */
                 ';
             } elseif(str_contains($event, 'update') || str_contains($event, 'upgrade')) {
                 $code = '
@@ -167,6 +177,12 @@ class MakeResolverCommand extends Command
             if(!$model) {
                 $response = [\'data\' => [\'Elemento no encontrado\'], \'code\' => Response::HTTP_NOT_FOUND];
             } else {
+
+                //Si se envían archivos se hace la conversión
+                if(array_key_exists("param_name", $this->input_data)) {
+                    $this->input_data["param_name"] = $this->convertToUploadedFile($this->input_data["param_name"]);
+                }
+
                 $validator = $this->formRequestToValidator(UpdateModelRequest::class, $this->input_data, $model->id);
                 $errors = $validator->errors();
 
@@ -178,6 +194,9 @@ class MakeResolverCommand extends Command
                     $model->update($this->input_data);
                     $response = [\'data\' => $model, \'code\' => Response::HTTP_OK];
                 }
+
+                //Se eliminan archivos temporales convertidos a UploadedFile
+                $this->deleteTempFiles();
             }
         }*/
                 ';

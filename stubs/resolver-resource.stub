@@ -3,9 +3,13 @@
 namespace App\Background;
 
 use App\Background\src\Resolver;
+use App\Traits\RequestHelpers;
+use Illuminate\Http\Response;
 
 class $CLASS_NAME$ implements Resolver
 {
+    use RequestHelpers;
+
     private $input_data = [];
 
     /**
