@@ -1,4 +1,4 @@
-app_name="crm_template_service"
+app_name="folder_name"
 
 default_path="/var/www/html"
 tmp_path="/tmp/$app_name"
