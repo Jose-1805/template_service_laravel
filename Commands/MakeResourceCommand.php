@@ -137,12 +137,12 @@ class MakeResourceCommand extends Command
         $content = '';
         while ($line = fgets($file)) {
             if (str_contains($line, 'use ') && !$use_is_added) {
-                $content .= 'use App\Http\Controllers\\$controller_name;'.PHP_EOL;
+                $content .= 'use App\Http\Controllers\\'.$controller_name.';'.PHP_EOL;
                 $use_is_added = true;
             }
             $content .= $line;
         }
-        $content .= 'Route::apiResource(\''.$route_name.'\', $controller_name::class);'.PHP_EOL;
+        $content .= 'Route::apiResource(\''.$route_name.'\', '.$controller_name.'::class);'.PHP_EOL;
         rewind($file);
         fwrite($file, $content);
         fclose($file);
