@@ -126,6 +126,7 @@ echo '          RABBITMQ_PORT'
 echo '          RABBITMQ_USER'
 echo '          RABBITMQ_PASSWORD'
 echo '          RABBITMQ_VHOST'
+echo '* Configure el valor de las claves exchange y exchange_type en su archivo config/amqp.php de acuerdo a sus necesidades'
 echo '* Configure su archivo .env para el acceso a la base de datos'
 if [ "$REDIS" -eq 1 ]
 then
